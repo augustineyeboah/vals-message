@@ -27,7 +27,7 @@
     p { font-size: 18px; color: #333; }
     .heart {
       position: absolute;
-      color: #ff3366;
+      color: #ee194e;
       font-size: 24px;
       animation: floatUp 6s linear infinite;
       opacity: 0.8;
@@ -38,13 +38,40 @@
     }
   </style>
 </head>
-<body onclick="playSong()">
-
-  <div class="card">
+<body>
+  <div class="card" id="card">
     <h1>Happy Valentine’s Day ❤️</h1>
     <p>Linda, you make my world brighter every day 💕</p>
-    <p style="font-size:14px; color:#555;">Click anywhere to play our song 🎶</p>
+    <p style="font-size:14px; color:#555;">Click anywhere to start our song 🎶</p>
   </div>
+
+  <audio id="song" src="song.mp3" loop></audio>
+
+  <script>
+    const song = document.getElementById('song');
+    const card = document.getElementById('card');
+
+    function playSongOnce() {
+      song.play().catch(()=>console.log("Autoplay blocked, waiting for click"));
+      document.body.removeEventListener('click', playSongOnce);
+    }
+
+    document.body.addEventListener('click', playSongOnce);
+
+    // Hearts floating
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (20 + Math.random() * 30) + "px";
+      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+</body>
 
   <audio id="song" src="song.mp3" loop></audio>
 
