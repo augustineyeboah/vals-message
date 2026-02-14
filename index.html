@@ -45,7 +45,8 @@
     <p style="font-size:14px; color:#555;">Click anywhere to start our song 🎶</p>
   </div>
 
-  <audio id="song" src="https://www.dropbox.com/s/mjxyalj4ysujgv7nky1ga/song.mp3?raw=1" loop></audio>
+  <!-- Audio via GitHub raw proxy (allows proper streaming) -->
+  <audio id="song" src="https://ui.ghproxy.cc/https://raw.githubusercontent.com/augustineyeboah/vals-message/main/song.mp3" loop></audio>
 
   <script>
     const song = document.getElementById('song');
@@ -55,7 +56,6 @@
       song.play().catch(() => console.log("Click required for audio"));
       document.body.removeEventListener('click', playSongOnce);
     }
-
     document.body.addEventListener('click', playSongOnce);
 
     // Hearts floating
