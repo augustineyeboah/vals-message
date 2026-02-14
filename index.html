@@ -13,6 +13,7 @@
       justify-content: center;
       align-items: center;
       font-family: Arial, sans-serif;
+      cursor: pointer; /* click anywhere */
     }
     .card {
       background: rgba(255,255,255,0.9);
@@ -37,16 +38,26 @@
     }
   </style>
 </head>
-<body>
+<body onclick="playSong()">
 
   <div class="card">
     <h1>Happy Valentine’s Day ❤️</h1>
     <p>Linda, you make my world brighter every day 💕</p>
+    <p style="font-size:14px; color:#555;">Click anywhere to play our song 🎶</p>
   </div>
 
-  <audio id="song" src="song.mp3" autoplay loop></audio>
+  <audio id="song" src="song.mp3" loop></audio>
 
   <script>
+    // Play song on first click
+    function playSong() {
+      const song = document.getElementById('song');
+      if (song.paused) {
+        song.play();
+      }
+    }
+
+    // Hearts floating
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
